@@ -9,14 +9,18 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
      print: './src/print.js',
    },
    devtool: 'inline-source-map',
+   devServer: {
+    contentBase: './dist',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Webpack Development using source maps',
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }), // not cleaning index.html for watch mode
   ],
    output: {
      filename: '[name].bundle.js',
      path: path.resolve(__dirname, 'dist'),
+     publicPath: '/',
    },
  };
